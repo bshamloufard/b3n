@@ -3,8 +3,15 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    width: 100%;
     font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
 }
 
 #starCanvas {
@@ -17,16 +24,17 @@ html {
 }
 
 .glass-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    /* Changed from absolute for better mobile handling */
+    margin: 40px auto;
+    padding: 20px;
     z-index: 10;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 90%;
     max-width: 1000px;
+    box-sizing: border-box;
 }
 
 .glass-card {
@@ -39,6 +47,8 @@ html {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .glass-card::before {
@@ -133,15 +143,26 @@ html {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .glass-container {
+        margin: 20px auto;
+        padding: 10px;
+    }
+
     .profile-card {
         flex-direction: column-reverse;
         text-align: center;
         padding: 20px;
+        height: auto;
+        min-height: auto;
     }
 
     .profile-info {
         padding-right: 0;
         padding-top: 20px;
+    }
+
+    .profile-info h1 {
+        font-size: 2em;
     }
 
     .profile-image {
@@ -153,10 +174,15 @@ html {
     .projects-container {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
     }
 
     .project-frame {
         width: 100%;
         max-width: 300px;
+    }
+
+    .glass-card {
+        padding: 15px;
     }
 }
